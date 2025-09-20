@@ -2,7 +2,7 @@ name: first workflow
 on: workflow_dispatch
 jobs:
   first-job:
-    run-on: ubunto-latest
+    runs-on: ubunto-latest
     steps:
       - name: print hello 
         run: echo "hello world!"
