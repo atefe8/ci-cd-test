@@ -1,0 +1,21 @@
+name: Demo Outputs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      myNumber: ${{ steps.save.outputs.num }}
+    steps:
+      - name: Create a number
+        id: save
+        run: echo "num=123" >> $GITHUB_OUTPUT
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - name: Use number from job1
+        run: echo "The number is ${{ needs.job1.outputs.myNumber }}"
