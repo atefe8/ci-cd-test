@@ -1,0 +1,52 @@
+name: first demo
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get project data
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: run tests
+        run: npm test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get project data
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get project data
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm install
+      - name: deploy
+        run: echo "deploy"
